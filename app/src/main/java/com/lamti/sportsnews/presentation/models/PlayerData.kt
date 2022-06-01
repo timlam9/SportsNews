@@ -5,3 +5,4 @@ data class PlayerData(
     val photo: String,
     val goals: Int
 )
+

@@ -1,4 +1,4 @@
-package com.lamti.sportsnews.data.models
+package com.lamti.sportsnews.data.models.player
 
 import com.lamti.sportsnews.presentation.models.PlayerData
 

@@ -6,11 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.lamti.sportsnews.ui.components.PlayersList
+import com.lamti.sportsnews.ui.components.TeamsList
 import com.lamti.sportsnews.ui.theme.SportsNewsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PlayersList()
+                    TeamsList()
                 }
             }
         }

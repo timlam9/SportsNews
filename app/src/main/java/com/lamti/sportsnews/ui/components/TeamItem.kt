@@ -14,7 +14,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,11 +32,11 @@ import androidx.compose.ui.unit.sp
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.imageloading.LoadPainter
 import com.lamti.sportsnews.R
-import com.lamti.sportsnews.presentation.models.PlayerData
+import com.lamti.sportsnews.presentation.models.TeamData
 import com.lamti.sportsnews.ui.theme.SportsNewsTheme
 
 @Composable
-fun PlayerItem(player: PlayerData, onClick: () -> Unit) {
+fun TeamItem(team: TeamData, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(
@@ -62,7 +61,7 @@ fun PlayerItem(player: PlayerData, onClick: () -> Unit) {
                 )
             ) {
                 val image: LoadPainter<Any> = rememberCoilPainter(
-                    request = player.photo,
+                    request = team.stadiumPhoto,
                     fadeIn = true,
                     previewPlaceholder = R.drawable.ic_launcher_background
                 )
@@ -80,8 +79,19 @@ fun PlayerItem(player: PlayerData, onClick: () -> Unit) {
                     .padding(start = 12.dp)
                     .align(Alignment.CenterVertically)
             ) {
+                val logo: LoadPainter<Any> = rememberCoilPainter(
+                    request = team.logo,
+                    fadeIn = true,
+                    previewPlaceholder = R.drawable.ic_launcher_background
+                )
+                Image(
+                    painter = logo,
+                    contentDescription = null,
+                    modifier = Modifier.height(40.dp),
+                    contentScale = ContentScale.Fit
+                )
                 Text(
-                    text = player.name,
+                    text = team.name,
                     fontWeight = FontWeight.Bold,
                     style = TextStyle(fontSize = 22.sp),
                     color = Color.Black
@@ -90,8 +100,8 @@ fun PlayerItem(player: PlayerData, onClick: () -> Unit) {
                     LocalContentAlpha provides ContentAlpha.medium
                 ) {
                     Text(
-                        text = "Total goals: ${player.goals}",
-                        style = typography.body2,
+                        text = "Stadium: ${team.stadium}",
+                        style = MaterialTheme.typography.body2,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.padding(end = 25.dp)
@@ -104,13 +114,14 @@ fun PlayerItem(player: PlayerData, onClick: () -> Unit) {
 
 @Preview(showBackground = true)
 @Composable
-private fun PlayerItemPreview() {
+private fun TeamItemPreview() {
     SportsNewsTheme {
-        PlayerItem(
-            PlayerData(
-                "George",
+        TeamItem(
+            TeamData(
+                "Fodelara",
                 "null",
-                0
+                "Fodele Beach",
+                "null"
             )
         ) {}
     }

@@ -5,7 +5,8 @@ import android.content.pm.PackageManager
 import com.lamti.sportsnews.data.networkResult.NetworkResultCallAdapterFactory
 import com.lamti.sportsnews.data.remoteApi.FootballApi
 import com.lamti.sportsnews.data.remoteApi.PlayersRemoteDataSource
-import com.lamti.sportsnews.data.repository.PlayersRepository
+import com.lamti.sportsnews.data.remoteApi.TeamsRemoteDataSource
+import com.lamti.sportsnews.data.repository.FootballRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -72,5 +73,13 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun provideRepository(playersRemoteDataSource: PlayersRemoteDataSource) = PlayersRepository(playersRemoteDataSource)
+    fun provideRemoteTeamsDataSource(apiService: FootballApi) = TeamsRemoteDataSource(apiService)
+
+    @Singleton
+    @Provides
+    fun provideRepository(
+        playersRemoteDataSource: PlayersRemoteDataSource,
+        teamsRemoteDataSource: TeamsRemoteDataSource
+    ) =
+        FootballRepository(playersRemoteDataSource, teamsRemoteDataSource)
 }

@@ -1,6 +1,6 @@
-package com.lamti.sportsnews.data.models
+package com.lamti.sportsnews.data.models.player
 
-data class PlayersResponse(
+data class ApiResponse(
     val errors: List<Any>,
     val `get`: String,
     val paging: Paging,
