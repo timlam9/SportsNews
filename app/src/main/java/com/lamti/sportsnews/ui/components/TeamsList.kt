@@ -18,11 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.lamti.sportsnews.presentation.TeamsViewModel
-import com.lamti.sportsnews.presentation.models.PlayerData
 import com.lamti.sportsnews.presentation.models.TeamData
 
 @Composable
-fun TeamsList(teamsViewModel: TeamsViewModel = viewModel()) {
+fun TeamsList(teamsViewModel: TeamsViewModel = viewModel(), onItemClicked: (Int) -> Unit) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -49,11 +48,9 @@ fun TeamsList(teamsViewModel: TeamsViewModel = viewModel()) {
                 }
                 items(items = list) { item ->
                     when (item) {
-                        is PlayerData -> PlayerItem(player = item) {}
-                        is TeamData -> TeamItem(team = item) {}
+                        is TeamData -> TeamItem(team = item, onClick = { onItemClicked(item.id) })
                         else -> Unit
                     }
-
                 }
             }
         }

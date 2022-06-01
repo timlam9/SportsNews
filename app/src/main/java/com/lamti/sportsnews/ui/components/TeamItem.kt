@@ -118,6 +118,7 @@ private fun TeamItemPreview() {
     SportsNewsTheme {
         TeamItem(
             TeamData(
+                321,
                 "Fodelara",
                 "null",
                 "Fodele Beach",

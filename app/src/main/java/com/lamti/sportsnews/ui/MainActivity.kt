@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.lamti.sportsnews.ui.components.TeamsList
+import androidx.navigation.compose.rememberNavController
+import com.lamti.sportsnews.presentation.navigation.NavGraph
 import com.lamti.sportsnews.ui.theme.SportsNewsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +23,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TeamsList()
+                    val navController = rememberNavController()
+                    NavGraph(navController = navController)
                 }
             }
         }

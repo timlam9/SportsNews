@@ -10,6 +10,7 @@ data class Response(
     companion object {
 
         fun Response.toData() = TeamData(
+            id = team.id,
             name = team.name,
             logo = team.logo,
             stadium = venue?.name ?: "no stadium",
