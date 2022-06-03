@@ -2,6 +2,7 @@ package com.lamti.sportsnews.di
 
 import android.content.Context
 import android.content.pm.PackageManager
+import com.lamti.sportsnews.data.local.FootballDatabase
 import com.lamti.sportsnews.data.networkResult.NetworkResultCallAdapterFactory
 import com.lamti.sportsnews.data.remoteApi.FootballApi
 import com.lamti.sportsnews.data.remoteApi.PlayersRemoteDataSource
@@ -78,8 +79,9 @@ object ApiModule {
     @Singleton
     @Provides
     fun provideRepository(
-        playersRemoteDataSource: PlayersRemoteDataSource,
-        teamsRemoteDataSource: TeamsRemoteDataSource
+        teamsRemoteDataSource: TeamsRemoteDataSource,
+        footballApi: FootballApi,
+        footballDatabase: FootballDatabase
     ) =
-        FootballRepository(playersRemoteDataSource, teamsRemoteDataSource)
+        FootballRepository(teamsRemoteDataSource, footballApi, footballDatabase)
 }

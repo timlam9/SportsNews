@@ -90,7 +90,7 @@ fun PlayerItem(player: PlayerData, onClick: () -> Unit) {
                     LocalContentAlpha provides ContentAlpha.medium
                 ) {
                     Text(
-                        text = "Total goals: ${player.goals}",
+                        text = "Total goals: ${player.age}",
                         style = typography.body2,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -108,6 +108,7 @@ private fun PlayerItemPreview() {
     SportsNewsTheme {
         PlayerItem(
             PlayerData(
+                0,
                 "George",
                 "null",
                 0

@@ -10,9 +10,10 @@ data class Response(
     companion object {
 
         fun Response.toData() = PlayerData(
-            name = player.name,
-            photo = player.photo,
-            goals = statistics.firstOrNull()?.goals?.total ?: 0
+            id = player.id,
+            name = player.name ?: "null",
+            photo = player.photo ?: "null",
+            age = player.age ?: 0
         )
     }
 }

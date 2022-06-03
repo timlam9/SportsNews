@@ -6,6 +6,6 @@ import com.lamti.sportsnews.data.networkResult.ApiResult
 class PlayersRemoteDataSource(private val footballApi: FootballApi) {
 
     suspend operator fun invoke(season: Int, teamID: Int): ApiResult<ApiResponse> =
-        footballApi.getPlayers(season, teamID)
+        footballApi.getPlayers(season, teamID, 1)
 }
 

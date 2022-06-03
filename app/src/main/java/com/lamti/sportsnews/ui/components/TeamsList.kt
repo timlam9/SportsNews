@@ -16,25 +16,30 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.lamti.sportsnews.presentation.TeamsViewModel
+import com.lamti.sportsnews.presentation.HomeViewModel
 import com.lamti.sportsnews.presentation.models.TeamData
 
 @Composable
-fun TeamsList(teamsViewModel: TeamsViewModel = viewModel(), onItemClicked: (Int) -> Unit) {
+fun TeamsList(viewModel: HomeViewModel, onItemClicked: (Int) -> Unit) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        AnimatedVisibility(teamsViewModel.uiState.loading) {
+        AnimatedVisibility(viewModel.uiState.loading) {
             CircularProgressIndicator(
                 modifier = Modifier
                     .size(48.dp)
                     .wrapContentSize()
             )
         }
-        AnimatedVisibility(!teamsViewModel.uiState.loading) {
-            val list = remember { teamsViewModel.uiState.data }
+        AnimatedVisibility(!viewModel.uiState.loading && !viewModel.uiState.errorMessage.isNullOrEmpty()) {
+            Text(
+                modifier = Modifier.padding(20.dp),
+                text = "Something went wrong"
+            )
+        }
+        AnimatedVisibility(!viewModel.uiState.loading && viewModel.uiState.data.isNotEmpty()) {
+            val list = remember { viewModel.uiState.data }
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 item {
                     Text(

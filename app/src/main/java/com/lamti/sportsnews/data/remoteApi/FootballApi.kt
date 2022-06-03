@@ -9,7 +9,11 @@ import retrofit2.http.Query
 interface FootballApi {
 
     @GET("players")
-    suspend fun getPlayers(@Query("season") season: Int, @Query("team") teamID: Int): ApiResult<ApiResponse>
+    suspend fun getPlayers(
+        @Query("season") season: Int,
+        @Query("team") teamID: Int,
+        @Query("page") page: Int
+    ): ApiResult<ApiResponse>
 
     @GET("teams")
     suspend fun getTeams(@Query("country") country: String): ApiResult<TeamResponse>
